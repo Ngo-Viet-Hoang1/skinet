@@ -43,3 +43,5 @@ dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migratio
 Config your own Property so run again
 dotnet ef migrations remove -p Infrastructure -s API
 dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations
+
+------------------------------------------------------------------------------------------------
