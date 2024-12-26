@@ -45,3 +45,15 @@ dotnet ef migrations remove -p Infrastructure -s API
 dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations
 
 ------------------------------------------------------------------------------------------------
+npm i -g @angular/cli
+ng new client -> yes , SCSS
+test app => ng serve
+ng add ngx-bootstrap
+npm i bootstrap
+add manually in angular.json in styles
+
+Generate SSL key to run on https: https://medium.com/@rubenvermeulen/running-angular-cli-over-https-with-a-trusted-certificate-4a0d5f92747a
+Run on wsl, change file .sh to LF instead CRLF
+
+cd .\src\app\
+ng g c nav-bar --skip-tests

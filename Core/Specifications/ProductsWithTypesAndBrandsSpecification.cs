@@ -4,7 +4,7 @@ namespace Core.Specifications
 {
     public class ProductsWithTypesAndBrandsSpecification : BaseSpecification<Product>
     {
-        public ProductsWithTypesAndBrandsSpecification(string? sort, int? brandId, int? typeId)
+        public ProductsWithTypesAndBrandsSpecification(int pageSize, int pageIndex,string? sort, int? brandId, int? typeId)
             : base(x =>
                 (!brandId.HasValue || x.ProductBrandId == brandId) &&
                 (!typeId.HasValue || x.ProductTypeId == typeId)
@@ -29,6 +29,8 @@ namespace Core.Specifications
                         break;
                 }
             }
+
+            ApplyPaging(pageSize * (pageIndex - 1), pageSize);
         }
 
         public ProductsWithTypesAndBrandsSpecification(int id) : base(x => x.Id == id)
