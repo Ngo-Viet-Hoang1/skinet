@@ -5,6 +5,13 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenLocalhost(5001, listenOptions =>
+    {
+        listenOptions.UseHttps();
+    });
+});
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -18,6 +25,15 @@ builder.Services.AddDbContext<StoreContext>(options => {
 });
 builder.Services.AddApplicationService(builder.Configuration);
 builder.Services.AddSwaggerDocumentation();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", policy =>
+    {
+        policy.AllowAnyHeader()
+              .AllowAnyMethod()
+              .WithOrigins("https://localhost:4200");
+    });
+});
 
 var app = builder.Build();
 using(var scope = app.Services.CreateScope()) 
@@ -45,6 +61,7 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 app.UseStaticFiles();
+app.UseCors("CorsPolicy");
 app.UseAuthorization(); 
 app.UseSwaggerDocumentation();
 app.MapControllers();

@@ -29,7 +29,7 @@ namespace API.Controllers
 
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts(
-            string sort, int? brandId, int? typeId)
+            string? sort, int? brandId, int? typeId)
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(sort, brandId, typeId);
 
