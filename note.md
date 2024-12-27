@@ -57,3 +57,16 @@ Run on wsl, change file .sh to LF instead CRLF
 
 cd .\src\app\
 ng g c nav-bar --skip-tests
+
+------------------------------------------------------------------------------------------------
+cd client
+cd .\src\app\  
+ng g m core
+ng g m shop
+cd shop
+ng g c shop --flat --skip-tests
+ng g s shop --skip-tests --flat
+ng g m shop-routing --flat
+
+ng g c shop-item --skip-tests
+shared/components -> ng g c paging-header --skip-tests, ng g c pager --skip-tests
