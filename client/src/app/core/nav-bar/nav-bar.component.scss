@@ -1,15 +1,28 @@
 img {
-    max-height: 70px;
+  max-height: 70px;
 }
 
 .cart-no {
-    min-width: 25px;
-    min-height: 25px;
-    border-radius: 50%;
-    font-size: 1em;
-    background: blue;
-    color: white;
-    text-align: center;
-    top: -12px;
-    right: 32px;
+  min-width: 25px;
+  min-height: 25px;
+  border-radius: 50%;
+  font-size: 1em;
+  background: blue;
+  color: white;
+  text-align: center;
+  top: -12px;
+  right: 32px;
+}
+
+a {
+  text-decoration: none;
+  color: #343a40;
+
+  &:hover {
+    color: orange;
+  }
+
+  &.active {
+    color: orange;
+  }
 }
