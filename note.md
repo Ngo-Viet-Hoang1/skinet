@@ -70,3 +70,7 @@ ng g m shop-routing --flat
 
 ng g c shop-item --skip-tests
 shared/components -> ng g c paging-header --skip-tests, ng g c pager --skip-tests
+
+------------------------------------------------------------------------------------------------
+app -> ng g m home -> cd home -> ng g c home --skip-tests --flat 
+shop -> ng g c product-details --skip-tests
