@@ -74,3 +74,7 @@ shared/components -> ng g c paging-header --skip-tests, ng g c pager --skip-test
 ------------------------------------------------------------------------------------------------
 app -> ng g m home -> cd home -> ng g c home --skip-tests --flat 
 shop -> ng g c product-details --skip-tests
+
+------------------------------------------------------------------------------------------------
+core -> ng g c test-error
+src -> ng g environments
