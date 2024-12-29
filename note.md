@@ -78,3 +78,6 @@ shop -> ng g c product-details --skip-tests
 ------------------------------------------------------------------------------------------------
 core -> ng g c test-error
 src -> ng g environments
+
+core -> ng g c not-found ->  ng g c server-error
+core -> new folder interceptors -> cd interceptors -> ng g interceptor error
