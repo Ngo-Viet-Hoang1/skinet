@@ -9,16 +9,21 @@ import {
 import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
+  withFetch,
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { ErrorInteceptor } from './core/interceptors/error.interceptor';
+import { provideToastr } from 'ngx-toastr';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withInterceptorsFromDi(), withFetch()),
+    provideToastr(),
+    provideAnimations(),
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInteceptor, multi: true },
   ],
 };
