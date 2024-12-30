@@ -90,3 +90,6 @@ client -> npm i ngx-toastr
 
 core -> ng g c section-header --skip-tests
 npm i xng-breadcrumb
+
+------------------------------------------------------------------------------------------------
+client -> npm i bootswatch
