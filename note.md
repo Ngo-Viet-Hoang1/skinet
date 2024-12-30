@@ -97,3 +97,7 @@ client -> npm i ngx-spinner
 
 core -> mkdir services
 services -> ng g s busy --flat --skip-tests
+
+------------------------------------------------------------------------------------------------
+Infrastructure -> Install stackexchange.redis
+
