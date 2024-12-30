@@ -1,9 +1,10 @@
-<div class="container mt-5">
+<div class="container mt-3">
     <div class="row">
 
         <section class="col-3">
-            <h5 class="text-warning ms-3">Sort</h5>
-            <div class="select-custom mb-3">
+            @if (types.length > 0 && brands.length > 0) {
+            <h5 class="text-success ms-3 mt-4 mb-4">Sort</h5>
+            <div class="select-custom mb-4">
                 <select name="" id="" (change)="onSortSelected($event)" class="form-select">
                     @for (sort of sortOptions; track $index) {
                     <option value="{{sort.value}}">{{sort.name}}</option>
@@ -11,39 +12,35 @@
                 </select>
             </div>
 
-            <h5 class="text-warning ms-3">Brands</h5>
+            <h5 class="text-success ms-3">Brands</h5>
             <ul class="list-group my-3">
                 @for (brand of brands; track $index) {
-                <li class="list-group-item" aria-current="true" 
-                    [class.active]="shopParams.brandId === brand.id"
+                <li class="list-group-item" aria-current="true" [class.active]="shopParams.brandId === brand.id"
                     [value]="brand.id" (click)="onBrandSelected(brand.id)">
                     {{brand.name}}
                 </li>
                 }
             </ul>
 
-            <h5 class="text-warning ms-3">Types</h5>
+            <h5 class="text-success ms-3">Types</h5>
             <ul class="list-group my-3">
                 @for (type of types; track $index) {
-                <li class="list-group-item" aria-current="true" 
-                    [class.active]="shopParams.typeId === type.id"
+                <li class="list-group-item" aria-current="true" [class.active]="shopParams.typeId === type.id"
                     [value]="type.id" (click)="onTypeSelected(type.id)">
                     {{type.name}}
                 </li>
                 }
             </ul>
+            }
         </section>
 
         <section class="col-9">
             <div class="d-flex justify-content-between align-items-center pb-2">
-                <app-paging-header 
-                    [totalCount]="totalCount" 
-                    [pageSize]="shopParams.pageSize" 
-                    [pageNumber]="shopParams.pageNumber"
-                ></app-paging-header>
+                <app-paging-header [totalCount]="totalCount" [pageSize]="shopParams.pageSize"
+                    [pageNumber]="shopParams.pageNumber"></app-paging-header>
                 <div class="form-inline mt-2">
-                    <input type="text" class="form-control d-inline me-2" 
-                        #search style="width: 300px;" placeholder="Search" (keyup.enter)="onSearch()"/>
+                    <input type="text" class="form-control d-inline me-2" #search style="width: 300px;"
+                        placeholder="Search" (keyup.enter)="onSearch()" />
                     <button class="btn btn-outline-primary my-2" (click)="onSearch()">Search</button>
                     <button class="btn btn-outline-success my-2 ms-2" (click)="onReset()">Reset</button>
                 </div>
@@ -57,11 +54,8 @@
 
             <div class="d-flex justify-content-center mt-3">
                 @if (totalCount && totalCount > 0) {
-                    <app-pager 
-                        [totalCount]="totalCount" 
-                        [pageSize]="shopParams.pageSize" 
-                        (pageChanged)="onPageChanged($event)"
-                    ></app-pager>
+                <app-pager [totalCount]="totalCount" [pageSize]="shopParams.pageSize"
+                    (pageChanged)="onPageChanged($event)"></app-pager>
                 }
             </div>
         </section>
