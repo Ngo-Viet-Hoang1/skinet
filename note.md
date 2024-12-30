@@ -85,3 +85,8 @@ core -> new folder interceptors -> cd interceptors -> ng g interceptor error
 
 ------------------------------------------------------------------------------------------------
 client -> npm i ngx-toastr
+
+------------------------------------------------------------------------------------------------
+
+core -> ng g c section-header --skip-tests
+npm i xng-breadcrumb
