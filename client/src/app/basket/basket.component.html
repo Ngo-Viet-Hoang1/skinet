@@ -1,1 +1,14 @@
-<p>basket works!</p>
+<div class="container mt-5">
+    @if((basket$ | async) === null) {
+    <p>There are no items in your basket</p>
+    }
+    @else {
+    <div class="" *ngIf="(basket$ | async) as basket">
+        <ul>
+            @for (product of basket.items; track $index) {
+            <li>{{product.productName}}</li>
+            }
+        </ul>
+    </div>
+    }
+</div>
