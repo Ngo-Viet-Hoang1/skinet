@@ -1,14 +1,88 @@
-<div class="container mt-5">
-    @if((basket$ | async) === null) {
-    <p>There are no items in your basket</p>
-    }
-    @else {
-    <div class="" *ngIf="(basket$ | async) as basket">
-        <ul>
-            @for (product of basket.items; track $index) {
-            <li>{{product.productName}}</li>
-            }
-        </ul>
+<div class="container mt-2">
+    <div *ngIf="(basket$ | async) as basket; else noBasket">
+        <div class="pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 py-5 mb-1">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="bg-light" scope="col">
+                                            <div class="p-2 px-3 text-uppercase">Product</div>
+                                        </th>
+                                        <th class="bg-light" scope="col">
+                                            <div class="py-2 text-uppercase">Price</div>
+                                        </th>
+                                        <th class="bg-light" scope="col">
+                                            <div class="py-2 text-uppercase">Quantity</div>
+                                        </th>
+                                        <th class="bg-light" scope="col">
+                                            <div class="py-2 text-uppercase">Total</div>
+                                        </th>
+                                        <th class="bg-light" scope="col">
+                                            <div class="py-2 text-uppercase">Remove</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr *ngFor="let product of basket.items; let i = index">
+                                        <th scope="row">
+                                            <div class="p-2">
+                                                <img [src]="product.pictureUrl" [alt]="product.productName"
+                                                    class="img-fluid" style="max-height: 80px;">
+                                                <div class="ms-3 d-inline-block align-middle">
+                                                    <h5 class="mb-0">
+                                                        <a [routerLink]="['/shop', product.id]"
+                                                            class="text-success text-decoration-none">{{
+                                                            product.productName }}</a>
+                                                    </h5>
+                                                    <span
+                                                        class="text-muted font-weight-normal font-italic d-block">Type:
+                                                        {{ product.type }}</span>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td class="align-middle"><strong>{{ product.price | currency
+                                                }}</strong></td>
+                                        <td class="align-middle">
+                                            <div class="d-flex align-items-center justify-content-start">
+                                                <i class="fa fa-minus-circle text-success me-2"
+                                                    style="cursor: pointer; font-size: 2em;"
+                                                    (click)="decrementItemQuantity(product)"></i>
+                                                <span class="mx-2 font-weight-bold"
+                                                    style="font-size: 1.5em;">{{product.quantity}}</span>
+                                                <i class="fa fa-plus-circle text-success mx-2"
+                                                    style="cursor: pointer; font-size: 2em;"
+                                                    (click)="incrementItemQuantity(product)"></i>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle"><strong>{{ product.price * product.quantity| currency
+                                                }}</strong></td>
+                                        <td class="align-middle text-center">
+                                            <i class="fa fa-trash text-danger" style="cursor: pointer; font-size: 2em;"
+                                                (click)="removeBasketItem(product)"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 offset-6">
+                        <app-order-totals></app-order-totals>
+                        <a class="btn btn-outline-primary py-2 w-100" [routerLink]="'/checkout'">
+                            Proceed to checkout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    }
+    <ng-template #noBasket>
+        <p>There are no items in your basket</p>
+    </ng-template>
 </div>

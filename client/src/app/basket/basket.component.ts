@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { BasketService } from './basket.service';
 import { Observable } from 'rxjs';
-import { IBasket } from '@app/shared/models/basket';
+import { IBasket, IBasketItem } from '@app/shared/models/basket';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { OrderTotalsComponent } from "../shared/components/order-totals/order-totals.component";
 
 @Component({
   selector: 'app-basket',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule, OrderTotalsComponent],
   templateUrl: './basket.component.html',
   styleUrl: './basket.component.scss'
 })
@@ -18,4 +20,17 @@ export class BasketComponent implements OnInit {
   ngOnInit(): void {
     this.basket$ = this.basketService.basket$;
   }
+
+  removeBasketItem(item: IBasketItem) {
+    this.basketService.removeItemFromBasket(item);
+  }
+
+  incrementItemQuantity(item: IBasketItem) {
+    this.basketService.incrementItemQuantity(item);
+  }
+
+  decrementItemQuantity(item: IBasketItem) {
+    this.basketService.decrementItemQuantity(item);
+  }
+
 }

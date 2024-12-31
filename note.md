@@ -105,3 +105,10 @@ Infrastructure -> Install stackexchange.redis
 app ->  ng g m basket -> cd basket ->  ng g m basket-routing --flat -> ng g c basket --flat --skip-tests
 ->  ng g s basket --flat --skip-tests
 client -> npm i uuid
+
+------------------------------------------------------------------------------------------------
+
+shared/component -> ng g c order-totals --skip-tests
+
+app ->  ng g m checkout -> cd checkout -> ng g m checkout-routing --flat 
+-> ng g s checkout --flat --skip-tests -> ng g c checkout --flat --skip-tests
