@@ -101,3 +101,7 @@ services -> ng g s busy --flat --skip-tests
 ------------------------------------------------------------------------------------------------
 Infrastructure -> Install stackexchange.redis
 
+------------------------------------------------------------------------------------------------
+app ->  ng g m basket -> cd basket ->  ng g m basket-routing --flat -> ng g c basket --flat --skip-tests
+->  ng g s basket --flat --skip-tests
+client -> npm i uuid
