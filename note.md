@@ -112,3 +112,11 @@ shared/component -> ng g c order-totals --skip-tests
 
 app ->  ng g m checkout -> cd checkout -> ng g m checkout-routing --flat 
 -> ng g s checkout --flat --skip-tests -> ng g c checkout --flat --skip-tests
+------------------------------------------------------------------------------------------------
+
+Infrastructure -> Microsoft.AspNetCore.Identity, Microsoft.AspNetCore.Identity.EntityFrameWorkCore, 
+  Microsoft.identiymodel.tokens, system.identitymodel.tokens.jwt
+Api -> Microsoft.AspNetCore.Authentication.jwtbearer
+Core -> Microsoft.Extensions.identity.stores
+skinet dotnet ef migrations add IdentityInitial -p Infrastructure -s API -o Identity/Migrations -c AppIdentityDbContext
+if forget something dotnet ef migrations remove -p Infrastructure -s API  -c AppIdentityDbContext
