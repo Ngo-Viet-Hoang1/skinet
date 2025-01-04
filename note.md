@@ -129,3 +129,4 @@ shared/component -> ng g c text-input
 ------------------------------------------------------------------------------------------------
 
 core -> new folder guards -> cd guards -> ng g g auth --skip-tests
+skinet -> dotnet ef migrations add OrderEntityAdded -p Infrastructure -s API -c StoreContext
