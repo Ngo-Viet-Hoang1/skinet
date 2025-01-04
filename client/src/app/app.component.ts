@@ -52,6 +52,9 @@ export class AppComponent implements OnInit {
         error: (error) => console.log
       });
     }
+    else {
+      this.accountService.setCurrentUserSource(null);
+    }
   }
 
 }

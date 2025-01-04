@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { IUser } from '@app/shared/models/user';
 import { environment } from '@env/environment';
 import { Router } from '@angular/router';
-import { BehaviorSubject, map } from 'rxjs';
+import { map, ReplaySubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
   baseUrl = environment.apiUrl;
-  private currentUserSource = new BehaviorSubject<IUser | null>(null);
+  private currentUserSource = new ReplaySubject<IUser | null>(1);
   curentUser$ = this.currentUserSource.asObservable();
 
   constructor(
@@ -18,8 +18,8 @@ export class AccountService {
     private router: Router
   ) { }
 
-  getCurrentUserValue() {
-    return this.currentUserSource.value;
+  setCurrentUserSource(user: IUser | null) {
+    this.currentUserSource.next(user);
   }
 
   loadCurrentUser(token: string) {
