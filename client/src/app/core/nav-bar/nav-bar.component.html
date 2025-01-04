@@ -7,12 +7,45 @@
         <a class="p-2" [routerLink]="['/test-error']" routerLinkActive="active">Error</a>
         <a class="p-2" [routerLink]="['/routePath']" routerLinkActive="active">Contact</a>
     </nav>
-    <div class="d-flex align-items-center" [routerLink]="['/basket']">
-        <a class="position-relative">
-            <i class="fa fa-shopping-cart fa-2x me-5 text-dark"></i>
+    <div class="d-flex align-items-center">
+        <a class="position-relative" [routerLink]="['/basket']">
+            <i class="fa fa-shopping-cart fa-2x me-5 text-success"></i>
             <div *ngIf="(basket$ | async) as basket" class="cart-no position-absolute">{{basket.items.length}}</div>
         </a>
-        <a class="btn btn-outline-secondary me-2" href="#">Sign in</a>
-        <a class="btn btn-outline-secondary me-3" href="#">Sign up</a>
+
+        @if ((currentUser$ | async) === null) {
+        <a class="btn btn-outline-secondary me-2" [routerLink]="['/account/login']">Sign in</a>
+        <a class="btn btn-outline-secondary me-3" [routerLink]="['/account/register']">Sign up</a>
+        }
+        @else {
+        <div class="btn-group ms-3 me-5" dropdown>
+            <button type="button" class="btn btn-outline-success">
+                <strong>Welcome {{(currentUser$ | async)?.displayName}}</strong>
+            </button>
+            <button id="button-split" type="button" dropdownToggle
+                class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" aria-controls="dropdown-split">
+                <span class="caret"></span>
+                <span class="sr-only visually-hidden">Split button!</span>
+            </button>
+            <ul id="dropdown-split" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                <li role="menuitem">
+                    <a class="dropdown-item" [routerLink]="['/basket']">
+                        <i class="fa fa-shopping-cart me-3"></i> View Basket
+                    </a>
+                </li>
+                <li role="menuitem">
+                    <a class="dropdown-item" [routerLink]="['/orders']">
+                        <i class="fa fa-history me-3"></i> View Orders
+                    </a>
+                </li>
+                <li class="divider dropdown-divider"></li>
+                <li role="menuitem">
+                    <a class="dropdown-item" (click)="logout()">
+                        <i class="fa fa-sign-out me-3"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+        }
     </div>
 </div>

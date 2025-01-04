@@ -120,3 +120,8 @@ Api -> Microsoft.AspNetCore.Authentication.jwtbearer
 Core -> Microsoft.Extensions.identity.stores
 skinet dotnet ef migrations add IdentityInitial -p Infrastructure -s API -o Identity/Migrations -c AppIdentityDbContext
 if forget something dotnet ef migrations remove -p Infrastructure -s API  -c AppIdentityDbContext
+
+------------------------------------------------------------------------------------------------
+app -> ng g m account
+account -> ng g m account-routing --flat, ng g s account --flat --skip-tests, ng g c login --skip-tests, ng g c register --skip-tests
+shared/component -> ng g c text-input

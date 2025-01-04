@@ -26,3 +26,16 @@ a {
     color: green;
   }
 }
+
+.dropdown-item {
+  color: #212529;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: #2fb380; 
+  color: white;
+  text-decoration: none;
+}
