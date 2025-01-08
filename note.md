@@ -133,3 +133,5 @@ skinet -> dotnet ef migrations add OrderEntityAdded -p Infrastructure -s API -c 
 
 ------------------------------------------------------------------------------------------------
 client -> ng add @angular/cdk
+shared/components -> ng g c stepper --skip-tests
+app/checkout -> ng g c checkout-address --skip-tests, ng g c checkout-delivery --skip-tests, ng g c checkout-review --skip-tests, ng g c checkout-payment --skip-tests, ng g c checkout-success --skip-tests
