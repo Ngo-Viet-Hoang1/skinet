@@ -138,3 +138,6 @@ app/checkout -> ng g c checkout-address --skip-tests, ng g c checkout-delivery -
 ------------------------------------------------------------------------------------------------
 
 shared/components -> ng g c basket-summary --skip-tests
+------------------------------------------------------------------------------------------------
+app -> ng g c order-detailed, ng g m orders
+cd orders -> ng g m order-routing --flat,  ng g s orders --flat, ng g c orders --flat --skip-tests
