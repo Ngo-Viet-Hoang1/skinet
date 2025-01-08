@@ -5,10 +5,11 @@ import { IBasket, IBasketItem } from '@app/shared/models/basket';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { OrderTotalsComponent } from "../shared/components/order-totals/order-totals.component";
+import { BasketSummaryComponent } from "../shared/components/basket-summary/basket-summary.component";
 
 @Component({
   selector: 'app-basket',
-  imports: [CommonModule, RouterModule, OrderTotalsComponent],
+  imports: [CommonModule, RouterModule, OrderTotalsComponent, BasketSummaryComponent],
   templateUrl: './basket.component.html',
   styleUrl: './basket.component.scss'
 })

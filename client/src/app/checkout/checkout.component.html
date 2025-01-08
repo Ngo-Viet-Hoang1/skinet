@@ -6,13 +6,13 @@
                     <app-checkout-address [checkoutForm]="checkoutForm"></app-checkout-address>
                 </cdk-step>
                 <cdk-step [label]="'Delivery'" [completed]="checkoutForm.get('deliveryForm')?.valid">
-                    <app-checkout-delivery></app-checkout-delivery>
+                    <app-checkout-delivery [checkoutForm]="checkoutForm"></app-checkout-delivery>
                 </cdk-step>
                 <cdk-step [label]="'Review'">
-                    <app-checkout-review></app-checkout-review>
+                    <app-checkout-review [appStepper]="appStepper"></app-checkout-review>
                 </cdk-step>
                 <cdk-step [label]="'Payment'" [completed]="checkoutForm.get('paymentForm')?.valid">
-                    <app-checkout-payment></app-checkout-payment>
+                    <app-checkout-payment [checkoutForm]="checkoutForm"></app-checkout-payment>
                 </cdk-step>
             </app-stepper>
         </div>

@@ -1,0 +1,60 @@
+@if(basket$ | async) {
+<div class="table-responsive">
+    <table class="table">
+        <thead class="text-uppercase" [class.bg-light]="isBasket">
+            <tr>
+                <th>
+                    <div class="p-2 px-3">Product</div>
+                </th>
+                <th>
+                    <div class="py-2">Price</div>
+                </th>
+                <th>
+                    <div [class.text-center]="!isBasket" class="py-2">Quantity</div>
+                </th>
+                <th>
+                    <div class="py-2">Total</div>
+                </th>
+                <th *ngIf="isBasket">
+                    <div class="py-2">Remove</div>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let product of (basket$ | async)?.items; let i = index">
+                <th scope="row">
+                    <div class="p-2">
+                        <img [src]="product.pictureUrl" [alt]="product.productName" class="img-fluid"
+                            style="max-height: 80px;">
+                        <div class="ms-3 d-inline-block align-middle">
+                            <h5 class="mb-0">
+                                <a [routerLink]="['/shop', product.id]" class="text-success text-decoration-none">{{
+                                    product.productName }}</a>
+                            </h5>
+                            <span class="text-muted font-weight-normal font-italic d-block">Type: {{ product.type
+                                }}</span>
+                        </div>
+                    </div>
+                </th>
+                <td class="align-middle"><strong>{{ product.price | currency }}</strong></td>
+                <td class="align-middle">
+                    <div class="d-flex align-items-center justify-content-start"
+                        [class.justify-content-center]="!isBasket">
+                        <i *ngIf="isBasket" class="fa fa-minus-circle text-success me-2"
+                            style="cursor: pointer; font-size: 2em;" (click)="decrementItemQuantity(product)"></i>
+                        <span class="mx-2 font-weight-bold" style="font-size: 1.5em;">{{product.quantity}}</span>
+                        <i *ngIf="isBasket" class="fa fa-plus-circle text-success mx-2"
+                            style="cursor: pointer; font-size: 2em;" (click)="incrementItemQuantity(product)"></i>
+                    </div>
+                </td>
+                <td class="align-middle"><strong>{{ product.price * product.quantity| currency }}</strong></td>
+                <td class="align-middle text-center" *ngIf="isBasket">
+                    <i class="fa fa-trash text-danger" style="cursor: pointer; font-size: 2em;"
+                        (click)="removeBasketItem(product)"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+}

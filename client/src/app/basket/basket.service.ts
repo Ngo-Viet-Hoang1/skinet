@@ -15,6 +15,7 @@ export class BasketService {
   basket$ = this.basketSource.asObservable();
   private basketTotalSource = new BehaviorSubject<IBasketTotals | null>(null);
   basketTotal$ = this.basketTotalSource.asObservable();
+  shipping = 0;
 
   constructor(
     private http: HttpClient,
@@ -30,12 +31,8 @@ export class BasketService {
   }
 
   setShippingPrice(deliveryMethod: IDeliveryMethod) {
-    const basket = this.getCurrentBasketValue();
-    if (basket) {
-      basket.shippingPrice = deliveryMethod.price;
-      basket.deliveryMethodId = deliveryMethod.id;
-      this.setBasket(basket);
-    }
+    this.shipping = deliveryMethod.price;
+    this.caculateTotals();
   }
 
   getBasket(id: string) {
@@ -121,7 +118,7 @@ export class BasketService {
   private caculateTotals() {
     const basket = this.getCurrentBasketValue();
     if (basket) {
-      const shipping = 0;
+      const shipping = this.shipping;
       const subtotal = basket.items.reduce((a, b) => (b.price * b.quantity) + a, 0);
       const total = shipping + subtotal;
       this.basketTotalSource.next({ shipping, total, subtotal });
