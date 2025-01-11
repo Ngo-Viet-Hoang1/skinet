@@ -7,7 +7,7 @@
             <div class="select-custom mb-4">
                 <select name="" id="" (change)="onSortSelected($event)" class="form-select">
                     @for (sort of sortOptions; track $index) {
-                    <option value="{{sort.value}}">{{sort.name}}</option>
+                    <option value="{{sort.value}}" [selected]="shopParams.sort === sort.value">{{sort.name}}</option>
                     }
                 </select>
             </div>
@@ -55,7 +55,7 @@
             <div class="d-flex justify-content-center mt-3">
                 @if (totalCount && totalCount > 0) {
                 <app-pager [totalCount]="totalCount" [pageSize]="shopParams.pageSize"
-                    (pageChanged)="onPageChanged($event)"></app-pager>
+                    [pageNumber]="shopParams.pageNumber" (pageChanged)="onPageChanged($event)"></app-pager>
                 }
             </div>
         </section>
