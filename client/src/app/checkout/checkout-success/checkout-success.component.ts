@@ -1,10 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Order } from '@app/shared/models/order';
 
 @Component({
   selector: 'app-checkout-success',
-  imports: [RouterModule,],
+  imports: [RouterModule, CommonModule],
   templateUrl: './checkout-success.component.html',
   styleUrl: './checkout-success.component.scss'
 })

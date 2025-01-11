@@ -20,9 +20,10 @@ export interface IBasketItem {
 }
 
 export class Basket implements IBasket {
-    shippingPrice: number = 0;
     id = uuidv4();
     items: IBasketItem[] = [];
+    shippingPrice = 0;
+    clientSecret?: string | undefined;
 }
 
 export interface IBasketTotals {
