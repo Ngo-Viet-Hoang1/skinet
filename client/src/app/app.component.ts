@@ -5,6 +5,7 @@ import { SectionHeaderComponent } from "./core/section-header/section-header.com
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BasketService } from './basket/basket.service';
 import { AccountService } from './account/account.service';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ import { AccountService } from './account/account.service';
     RouterOutlet,
     SectionHeaderComponent,
     NgxSpinnerModule,
+    CarouselModule,
   ]
 })
 export class AppComponent implements OnInit {
