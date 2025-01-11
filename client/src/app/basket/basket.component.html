@@ -1,7 +1,7 @@
-<div class="container mt-2">
+<div class="container-lg mt-2 ">
     <div *ngIf="(basket$ | async) as basket; else noBasket">
         <div class="pb-5">
-            <div class="container">
+            <div class="container-lg">
                 <div class="row">
                     <div class="col-12 py-5 mb-1">
                         <app-basket-summary (decrement)="decrementItemQuantity($event)"
@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-6 offset-6">
+                    <div class="col-12 col-md-6 offset-md-6">
                         <app-order-totals></app-order-totals>
                         <a class="btn btn-outline-primary py-2 w-100" [routerLink]="'/checkout'">
                             Proceed to checkout

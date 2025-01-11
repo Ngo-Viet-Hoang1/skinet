@@ -1,11 +1,10 @@
 <div class="d-flex flex-column flex-md-row align-items-center justify-content-between
-     p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm fixed-top">
-    <a [routerLink]="['/']"><img src="/assets/images/logo.png" alt="logo"></a>
+     p-3 mb-3 bg-white border-bottom shadow-sm fixed-top">
+    <a class="d-none d-md-block" [routerLink]="['/']"><img src="/assets/images/logo.png" alt="logo"></a>
     <nav class="my-2 my-md-0 mr-md-3 text-uppercase" style="font-size: larger;">
         <a class="p-2" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
         <a class="p-2" [routerLink]="['/shop']" routerLinkActive="active">Shop</a>
-        <a class="p-2" [routerLink]="['/test-error']" routerLinkActive="active">Error</a>
-        <a class="p-2" [routerLink]="['/routePath']" routerLinkActive="active">Contact</a>
+        <a class="p-2 d-sm-inline d-none" [routerLink]="['/test-error']" routerLinkActive="active">Error</a>
     </nav>
     <div class="d-flex align-items-center">
         <a class="position-relative" [routerLink]="['/basket']">
@@ -18,7 +17,7 @@
         <a class="btn btn-outline-secondary me-3" [routerLink]="['/account/register']">Sign up</a>
         }
         @else {
-        <div class="btn-group ms-3 me-5" dropdown>
+        <div class="btn-group ms-3 me-md-5" dropdown>
             <button type="button" class="btn btn-outline-success">
                 <strong>Welcome {{(currentUser$ | async)?.displayName}}</strong>
             </button>

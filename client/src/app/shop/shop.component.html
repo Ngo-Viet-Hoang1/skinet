@@ -1,7 +1,7 @@
-<div class="container mt-3">
+<div class="container-lg mt-3">
     <div class="row">
 
-        <section class="col-3">
+        <section class="col-md-3 d-none d-md-block">
             @if (types.length > 0 && brands.length > 0) {
             <h5 class="text-success ms-3 mt-4 mb-4">Sort</h5>
             <div class="select-custom mb-4">
@@ -34,19 +34,20 @@
             }
         </section>
 
-        <section class="col-9">
-            <div class="d-flex justify-content-between align-items-center pb-2">
+        <section class="col-md-9">
+            <div class="d-flex flex-column-reverse flex-lg-row justify-content-between align-items-center pb-2">
                 <app-paging-header [totalCount]="totalCount" [pageSize]="shopParams.pageSize"
                     [pageNumber]="shopParams.pageNumber"></app-paging-header>
-                <div class="form-inline mt-2">
+                <div class="form-inline mw-100 mt-2">
                     <input type="text" class="form-control d-inline me-2" #search style="width: 300px;"
                         placeholder="Search" (keyup.enter)="onSearch()" />
                     <button class="btn btn-outline-primary my-2" (click)="onSearch()">Search</button>
-                    <button class="btn btn-outline-success my-2 ms-2" (click)="onReset()">Reset</button>
+                    <button class="btn btn-outline-success my-2 ms-2 d-none d-md-inline"
+                        (click)="onReset()">Reset</button>
                 </div>
             </div>
 
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 pb-3">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 pb-3">
                 @for (product of products; track $index) {
                 <app-shop-item [product]="product"></app-shop-item>
                 }
