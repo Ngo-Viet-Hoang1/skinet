@@ -5,13 +5,14 @@ import { IPagination, Pagination } from '@app/shared/models/pagination';
 import { IProduct } from '@app/shared/models/product';
 import { IType } from '@app/shared/models/productType';
 import { ShopParams } from '@app/shared/models/shopParams';
+import { environment } from '@env/environment';
 import { map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShopService {
-  baseUrl = 'https://localhost:5001/api/';
+  baseUrl = environment.apiUrl;
   products?: IProduct[] = [];
   brands?: IBrand[] = [];
   types?: IType[] = [];

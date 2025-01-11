@@ -5,7 +5,9 @@ using Core.Entities.Identity;
 using Infrastructure.Data;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -82,11 +84,25 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 app.UseStaticFiles();
+app.UseStaticFiles( new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Content")),
+    RequestPath = "/content"
+});
+app.UseStaticFiles(new StaticFileOptions
+{
+    ContentTypeProvider = new FileExtensionContentTypeProvider
+    {
+        Mappings = {[".js"] = "application/javascript"} // Đảm bảo MIME type cho tệp JS
+    }
+});
+
 app.UseCors("CorsPolicy");
 app.UseAuthentication();
 app.UseAuthorization(); 
 app.UseSwaggerDocumentation();
 app.MapControllers();
+app.MapFallbackToController("Index", "Fallback");
 
 var summaries = new[]
 {
