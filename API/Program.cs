@@ -26,13 +26,27 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 builder.Services.AddControllers();
-builder.Services.AddDbContext<StoreContext>(options => {
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
 
-builder.Services.AddDbContext<AppIdentityDbContext>(options => {
-    options.UseSqlite(builder.Configuration.GetConnectionString("IdentityConnection"));
-});
+if(builder.Environment.IsDevelopment())
+{
+    builder.Services.AddDbContext<StoreContext>(options => {
+        options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+    });
+
+    builder.Services.AddDbContext<AppIdentityDbContext>(options => {
+        options.UseSqlite(builder.Configuration.GetConnectionString("IdentityConnection"));
+    });
+}
+else
+{
+    builder.Services.AddDbContext<StoreContext>(options => {
+        options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8, 0, 21)));
+    });
+
+    builder.Services.AddDbContext<AppIdentityDbContext>(options => {
+        options.UseMySql(builder.Configuration.GetConnectionString("IdentityConnection"), new MySqlServerVersion(new Version(8, 0, 21)));
+    });
+}
 
 builder.Services.AddSingleton<IConnectionMultiplexer>(c =>
 {
